@@ -39,7 +39,7 @@ export const createActivity = async (req, res) => {
         const email = req.body.email;
         if (title == null) {
             return res.status(400).json({
-                "status": "bad Request",
+                "status": "Bad Request",
                 "message": "title cannot be null"
             });
         } 
