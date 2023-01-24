@@ -5,7 +5,7 @@ import Activities from "./Activities.js";
 const {DataTypes} = Sequelize;
 
 const Todos = db.define('todos', {
-    todo_id: {
+    id: {
         type: DataTypes.INTEGER,
         allowNull: false, 
         autoIncrement: true,

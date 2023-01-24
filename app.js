@@ -6,7 +6,7 @@ import ActivitiesRoute from "./routes/ActivitiesRoutes.js";
 import TodosRoute from "./routes/TodosRoutes.js";
 dotenv.config();
 const app = express();
-await db.sync({alter: true});
+await db.sync({force: true});
 
 app.use(cors({
     credentials: true,

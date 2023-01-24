@@ -4,7 +4,7 @@ import {Sequelize} from "sequelize";
 const {DataTypes} = Sequelize;
 
 const Activities = db.define('activities', {
-    activity_id: {
+    id: {
         type: DataTypes.INTEGER,
         allowNull: false, 
         primaryKey: true,

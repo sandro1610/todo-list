@@ -15,12 +15,12 @@ export const getActivities = async (req, res) => {
 
 export const getActivityById = async (req, res) => {
     try {
-        const activity_id = req.params.activity_id
-        const activity = await Activities.findOne({where: {activity_id: activity_id}});
+        const id = req.params.id
+        const activity = await Activities.findOne({where: {id: id}});
         if (activity == null ) {
             res.status(404).json({
                 "status": "Not Found",
-                "message": `Activity with ID ${activity_id} Not Found`
+                "message": `Activity with ID ${id} Not Found`
             });
         }else {
             res.status(200).json({
@@ -60,13 +60,13 @@ export const createActivity = async (req, res) => {
 }
 
 export const updateActivity = async (req, res) => {
-    const activity_id = req.params.activity_id;
+    const id = req.params.id;
     const title = req.body.title;
-    const activity = await Activities.findOne({where: {activity_id: activity_id}});
+    const activity = await Activities.findOne({where: {id: id}});
     if (activity == null) {
         res.status(404).json({
             "status": "Not Found",
-            "message": `Activity with ID ${activity_id} Not Found`
+            "message": `Activity with ID ${id} Not Found`
         });
     } else if (title == null || title == undefined) {
         res.status(400).json({
@@ -77,9 +77,9 @@ export const updateActivity = async (req, res) => {
         await Activities.update({
             title : title
         },{
-            where: {activity_id: activity_id}
+            where: {id: id}
         });
-        const activityUpdate = await Activities.findOne({where: {activity_id: activity_id}});
+        const activityUpdate = await Activities.findOne({where: {id: id}});
         res.status(200).json({
             "status": "Success",
             "message": "Success",
@@ -89,15 +89,15 @@ export const updateActivity = async (req, res) => {
 }
 
 export const deleteActivity = async (req, res) => {
-    const activity_id = req.params.activity_id
-    const activity = await Activities.findOne({where: {activity_id: activity_id}});
+    const id = req.params.id
+    const activity = await Activities.findOne({where: {id: id}});
     if (activity == null ) {
         res.status(404).json({
             "status": "Not Found",
-            "message": `Activity with ID ${activity_id} Not Found`
+            "message": `Activity with ID ${id} Not Found`
         });
     }else {
-        await Activities.destroy({where: {activity_id: activity_id}});
+        await Activities.destroy({where: {id: id}});
         res.status(200).json({
             "status": "Success",
             "message": "Success"
