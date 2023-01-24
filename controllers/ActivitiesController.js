@@ -17,7 +17,7 @@ export const getActivityById = async (req, res) => {
     try {
         const activity_id = req.params.activity_id
         const activity = await Activities.findOne({where: {activity_id: activity_id}});
-        if (activity == null || activity == undefined) {
+        if (activity == null ) {
             res.status(404).json({
                 "status": "Not Found",
                 "message": `Activity with ID ${activity_id} Not Found`
@@ -40,15 +40,15 @@ export const createActivity = async (req, res) => {
         const email = req.body.email;
         if (title == null || title == undefined) {
             res.status(400).json({
-                "status": "Bad Request",
-                "message": "Title cannot be null"
+                "status": "bad Request",
+                "message": "title cannot be null"
             });
         } else {
             const createActivity = await Activities.create({
                 title : title,
                 email: email
             });
-            res.status(200).json({
+            res.status(201).json({
                 "status": "Success",
                 "message": "Success",
                 "data": createActivity
@@ -63,7 +63,7 @@ export const updateActivity = async (req, res) => {
     const activity_id = req.params.activity_id;
     const title = req.body.title;
     const activity = await Activities.findOne({where: {activity_id: activity_id}});
-    if (activity == null|| activity == undefined) {
+    if (activity == null) {
         res.status(404).json({
             "status": "Not Found",
             "message": `Activity with ID ${activity_id} Not Found`
@@ -91,7 +91,7 @@ export const updateActivity = async (req, res) => {
 export const deleteActivity = async (req, res) => {
     const activity_id = req.params.activity_id
     const activity = await Activities.findOne({where: {activity_id: activity_id}});
-    if (activity == null || activity == undefined) {
+    if (activity == null ) {
         res.status(404).json({
             "status": "Not Found",
             "message": `Activity with ID ${activity_id} Not Found`

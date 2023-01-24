@@ -23,10 +23,10 @@ export const getTodoById = async (req, res) => {
     try {
         const todo_id = req.params.todo_id
         const todo = await Todos.findOne({where: {todo_id: todo_id}});
-        if (todo == null || todo == undefined) {
+        if (todo == null ) {
             res.status(404).json({
                 "status": "Not Found",
-                "message": `todo with ID ${todo_id} Not Found`
+                "message": `Todo with ID ${todo_id} Not Found`
             });
         }else {
             res.status(200).json({
@@ -45,10 +45,15 @@ export const createTodo = async (req, res) => {
         const title = req.body.title;
         const activity_group_id = req.body.activity_group_id;
         const priority = req.body.priority;
-        if (title == null || title == undefined) {
+        if (title == null ) {
             res.status(400).json({
-                "status": "Bad Request",
-                "message": "Title cannot be null"
+                "status": "bad Request",
+                "message": "title cannot be null"
+            });
+        } else if (activity_group_id == null || activity_group_id == undefined) {
+            res.status(400).json({
+                "status": "bad Request",
+                "message": "activity_group_id cannot be null"
             });
         } else {
             const todoCreate = await Todos.create({
@@ -56,7 +61,7 @@ export const createTodo = async (req, res) => {
                 activity_group_id : activity_group_id,
                 priority : priority
             });
-            res.status(200).json({
+            res.status(201).json({
                 "status": "Success",
                 "message": "Success",
                 "data": todoCreate
@@ -71,10 +76,10 @@ export const updateTodo = async (req, res) => {
     const todo_id = req.params.todo_id;
     const title = req.body.title;
     const todo = await Todos.findOne({where: {todo_id: todo_id}});
-    if (todo == null|| todo == undefined) {
+    if (todo == null) {
         res.status(404).json({
             "status": "Not Found",
-            "message": `todo with ID ${todo_id} Not Found`
+            "message": `Todo with ID ${todo_id} Not Found`
         });
     } else if (title == null || title == undefined) {
         res.status(400).json({
@@ -99,10 +104,10 @@ export const updateTodo = async (req, res) => {
 export const deleteTodo = async (req, res) => {
     const todo_id = req.params.todo_id
     const todo = await Todos.findOne({where: {todo_id: todo_id}});
-    if (todo == null || todo == undefined) {
+    if (todo == null) {
         res.status(404).json({
             "status": "Not Found",
-            "message": `todo with ID ${todo_id} Not Found`
+            "message": `Todo with ID ${todo_id} Not Found`
         });
     }else {
         await Todos.destroy({where: {todo_id: todo_id}});
