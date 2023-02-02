@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from "cors";
 import dotenv from "dotenv";
-import db from "./config/db.config.js";
-import ActivitiesRoute from "./routes/ActivitiesRoutes.js";
-import TodosRoute from "./routes/TodosRoutes.js";
+import db from "./config/db.config.mjs";
+import ActivitiesRoute from "./routes/ActivitiesRoutes.mjs";
+import TodosRoute from "./routes/TodosRoutes.mjs";
 dotenv.config();
 const app = express();
 await db.sync({force: true});
