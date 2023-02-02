@@ -1,6 +1,6 @@
-import db from "../config/db.config.mjs";
+import db from "../config/db.config.js";
 import {Sequelize} from "sequelize";
-import Activities from "./Activities.mjs";
+import Activities from "./Activities.js";
 
 const {DataTypes} = Sequelize;
 

@@ -1,4 +1,4 @@
-import Todos from  "../models/Todos.mjs";
+import Todos from  "../models/Todos.js";
 
 export const getTodos = async (req, res) => {
     try {
